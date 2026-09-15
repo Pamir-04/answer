@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ты спросила, кто это 💐</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f8ebe6;
+  --bg-accent: #f5d9d0;
+  --ink: #2a1f1c;
+  --rose: #c25b5b;
+  --rose-deep: #8e3838;
+  --cream: #fffaf5;
+  --muted: #6b5550;
+  --shadow: 0 20px 60px -20px rgba(142, 56, 56, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%, var(--bg-accent) 0%, transparent 50%),
+    radial-gradient(circle at 85% 90%, #f0c4b8 0%, transparent 45%),
+    var(--bg);
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+body::before, body::after {
+  content: "❀";
+  position: fixed;
+  font-size: 180px;
+  color: var(--rose);
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+body::before { top: -40px; left: -40px; transform: rotate(-20deg); }
+body::after { bottom: -60px; right: -50px; transform: rotate(25deg); }
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  background: var(--cream);
+  padding: 32px 26px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  z-index: 1;
+  border: 1px solid rgba(142, 56, 56, 0.08);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px solid rgba(194, 91, 91, 0.15);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--rose-deep);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+h1, h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  margin: 0 0 12px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+h1 { font-size: 34px; }
+h2 { font-size: 27px; }
+
+p {
+  color: var(--muted);
+  margin: 0 0 16px;
+  line-height: 1.55;
+  font-size: 15px;
+}
+
+.choice, .link-btn {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 7px 0;
+  border: 1px solid rgba(142, 56, 56, 0.12);
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--cream);
+  color: var(--ink);
+  text-align: left;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.choice:hover, .link-btn:hover {
+  background: var(--bg-accent);
+  border-color: var(--rose);
+  transform: translateX(4px);
+}
+
+.primary {
+  background: var(--rose);
+  color: var(--cream);
+  border-color: var(--rose-deep);
+  font-weight: 600;
+  justify-content: center;
+}
+.primary:hover {
+  background: var(--rose-deep);
+  border-color: var(--rose-deep);
+  transform: translateY(-2px);
+}
+
+.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+  justify-content: center;
+  font-size: 14px;
+}
+.ghost:hover {
+  background: transparent;
+  border-color: rgba(142, 56, 56, 0.15);
+  transform: none;
+}
+
+/* Факты */
+.facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+}
+.facts li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 11px 0;
+  border-bottom: 1px dashed rgba(142, 56, 56, 0.18);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.facts li:last-child { border-bottom: none; }
+.facts .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--rose);
+  line-height: 1;
+  min-width: 18px;
+}
+
+/* Карточка Instagram */
+.insta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  margin: 6px 0 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fde7df 0%, #f7d5cc 100%);
+  border: 1px solid rgba(142, 56, 56, 0.15);
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.25s ease;
+}
+.insta:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -12px rgba(142,56,56,.4); }
+.insta .ig-icon {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: var(--rose);
+  color: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.insta .ig-text { display: flex; flex-direction: column; gap: 2px; }
+.insta .ig-title { font-weight: 600; font-size: 15px; }
+.insta .ig-sub { font-size: 13px; color: var(--muted); }
+
+.note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--rose-deep);
+  background: rgba(194, 91, 91, 0.06);
+  border-left: 2px solid var(--rose);
+  padding: 12px 14px;
+  border-radius: 0 10px 10px 0;
+  margin: 0 0 18px;
+}
+
+.screen { display: none; animation: fadeIn 0.5s ease; }
+.screen.visible { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.small {
+  font-size: 13px;
+  color: #a08680;
+  margin-top: 14px;
+  text-align: center;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--rose-deep);
+  text-align: center;
+  margin-top: 18px;
+}
+
+.flower-icon {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 12px;
+  animation: sway 4s ease-in-out infinite;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- ЭКРАН 1: Её вопрос -->
+  <div id="screen-ask" class="screen visible">
+    <div class="flower-icon">💐</div>
+    <div class="eyebrow">в прошлый раз ты спросила</div>
+    <h1>«Кто это?»</h1>
+    <p>Справедливый вопрос. Второй букет — чтобы на него ответить. Хочешь узнать?</p>
+
+    <button class="choice primary" onclick="reveal()">👀 &nbsp;Показывай</button>
+  </div>
+
+  <!-- ЭКРАН 2: Раскрытие -->
+  <div id="screen-reveal" class="screen">
+    <div class="eyebrow">три факта</div>
+    <h2>Ну, знакомься</h2>
+
+    <ul class="facts">
+      <li><span class="num">1</span><span>Меня зовут Акмал. Работаю с цифрами и бюджетами, но по духу совсем не финансист 🙂</span></li>
+      <li><span class="num">2</span><span>Знаю, где в городе лучший кофе 😉</span></li>
+      <li><span class="num">3</span><span>Умею собрать целый сайт ради одного вопроса.</span></li>
+    </ul>
+
+    <a class="insta" href="https://www.instagram.com/akmalelchibekov/" target="_blank" rel="noopener" onclick="track('instagram')">
+      <div class="ig-icon">📷</div>
+      <div class="ig-text">
+        <span class="ig-title">Посмотреть, кто это</span>
+        <span class="ig-sub">instagram.com/akmalelchibekov</span>
+      </div>
+    </a>
+
+    <div class="note">
+      Встречу не предлагаю — ты уже ответила, и я это уважаю. Это просто ответ на твой вопрос.
+    </div>
+
+    <p style="margin-bottom:10px">Так что контакт спрашивать не буду — оставляю свой:</p>
+
+    <a class="link-btn primary" href="https://t.me/alamut_04" target="_blank" rel="noopener" onclick="chooseWrite()">💬 &nbsp;Написать в Telegram</a>
+    <button class="choice ghost" onclick="chooseNoWrite()">Не писать — и это нормально</button>
+  </div>
+
+  <!-- ФИНАЛ B: Написать -->
+  <div id="screen-write" class="screen">
+    <div class="flower-icon">💐</div>
+    <h2>Буду рад</h2>
+    <p>Пиши, когда захочешь, — без спешки и без ожиданий. Telegram должен был открыться; если нет — <a href="https://t.me/alamut_04" style="color:var(--rose-deep)">@alamut_04</a>.</p>
+    <div class="signature">— Акмал</div>
+  </div>
+
+  <!-- ФИНАЛ C: Не писать -->
+  <div id="screen-nowrite" class="screen">
+    <div class="flower-icon">🌹</div>
+    <h2>Понял. Спасибо, что дочитала</h2>
+    <p>Больше ничего не будет — ни сайтов, ни вопросов. Только пожелание хорошей недели.</p>
+    <div class="signature">— Акмал</div>
+  </div>
+
+</div>
+
+<script>
+/* ===== НАСТРОЙКИ =====
+   Вариант 1 (просто): вставь токен бота и chat_id. Токен будет виден в исходнике страницы —
+   старый токен обязательно перевыпусти в @BotFather и используй новый.
+   Вариант 2 (безопасно): оставь TG_TOKEN пустым и укажи PROXY_URL — адрес прокси (Cloudflare Worker /
+   Google Apps Script), который сам добавляет токен и пересылает текст в Telegram.
+*/
+const TG_TOKEN = "ВСТАВЬ_НОВЫЙ_ТОКЕН";
+const TG_CHAT_ID = "803409577";
+const PROXY_URL = "";
+
+const KEY = "kto-eto-v2";
+let sessionState = load();
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(sessionState)); } catch (e) {}
+}
+
+function send(text) {
+  let url;
+  if (PROXY_URL) {
+    url = PROXY_URL + (PROXY_URL.includes("?") ? "&" : "?") + "text=" + encodeURIComponent(text);
+  } else {
+    url = "https://api.telegram.org/bot" + TG_TOKEN + "/sendMessage?chat_id=" + TG_CHAT_ID +
+          "&text=" + encodeURIComponent(text);
+  }
+  try {
+    fetch(url, { mode: "no-cors", keepalive: true }).catch(function () {});
+  } catch (e) {
+    var img = new Image(); img.src = url;
+  }
+}
+
+// Каждое событие отправляется один раз, даже если страницу перезагрузить
+function track(event) {
+  if (sessionState[event]) return;
+  sessionState[event] = new Date().toISOString();
+  save();
+
+  const labels = {
+    opened:    "👀 Открыла страницу",
+    reveal:    "🔓 Нажала «Показывай»",
+    instagram: "📷 Перешла в Instagram",
+    write:     "💬 Нажала «Написать в Telegram»",
+    nowrite:   "🙏 Выбрала «Не писать»"
+  };
+  send("💐 БУКЕТ №2\n" + labels[event]);
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('visible'));
+  document.getElementById(id).classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function reveal()        { track('reveal');  showScreen('screen-reveal'); }
+function chooseWrite()   { track('write');   setTimeout(() => showScreen('screen-write'), 300); }
+function chooseNoWrite() { track('nowrite'); showScreen('screen-nowrite'); }
+
+// При повторном открытии — сразу тот экран, где она остановилась
+(function init() {
+  track('opened');
+  if (sessionState.write) showScreen('screen-write');
+  else if (sessionState.nowrite) showScreen('screen-nowrite');
+  else if (sessionState.reveal) showScreen('screen-reveal');
+})();
+</script>
+
+</body>
+</html>
